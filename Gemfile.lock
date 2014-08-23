@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/bmabey/database_cleaner.git
-  revision: 8d7f72ffc99befd5ce67d333a99e0cf054c24f81
+  revision: 78c14eb6add262fe104689302b4dd350bd490575
   specs:
     database_cleaner (1.3.0)
 
@@ -120,7 +120,7 @@ GEM
       mini_portile (= 0.6.0)
     pg (0.15.1)
     polyglot (0.3.5)
-    pry (0.10.0)
+    pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -167,10 +167,11 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     rubyzip (0.9.9)
-    sass (3.3.14)
-    sass-rails (4.0.1)
+    sass (3.2.19)
+    sass-rails (4.0.2)
       railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0.0)
     sdoc (0.3.20)
       json (>= 1.1.3)
@@ -185,7 +186,7 @@ GEM
     spork-rails (4.0.0)
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
-    sprockets (2.12.1)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -235,7 +236,7 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails_12factor (= 0.0.2)
   rspec-rails (= 2.13.1)
-  sass-rails (= 4.0.1)
+  sass-rails (= 4.0.2)
   sdoc (= 0.3.20)
   selenium-webdriver (= 2.35.1)
   spork-rails (= 4.0.0)
