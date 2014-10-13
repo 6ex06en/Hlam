@@ -10,6 +10,8 @@ describe User do
   subject { @user }
   
   it { should respond_to(:authenticate) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }
   
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
@@ -22,6 +24,11 @@ describe User do
 
     describe "with valid password" do
       it { should eq found_user.authenticate(@user.password) }
+    end
+
+    describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
     end
 
     describe "with invalid password" do
