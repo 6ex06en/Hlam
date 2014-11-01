@@ -49,4 +49,42 @@ describe "User pages" do
       end
     end
   end
+
+  describe "profile page" do
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+
+    before { visit user_path(user) }
+
+    it { should have_content(user.name) }
+    it { should have_title(user.name) }
+
+    describe "microposts" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+    end
+  end
+
+    describe "change user to admin" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:params) do {user: {admin: true, name: user.name, password: user.password, password_confirmation: user.password }}
+    end
+    before do
+      sign_in user, no_capybara: true
+      patch user_path(user), params
+    end
+    specify { expect(user.reload).not_to be_admin}
+  end
+
+      describe "no links profile/settings" do
+      before do 
+        visit root_path
+        end
+      it { should have_link("Sign in")}
+      it { should_not have_link('Sign out')}
+      it { should_not have_link('Settings')}
+      it { should_not have_link('Profile')}
+    end
 end
