@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
 has_many :microposts, dependent: :destroy
+has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+has_many :followed_users, through: :relationships, source: :followed
+has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+has_many :followers, through: :reverse_relationships, source: :follower
 before_create :create_remember_token
 before_save { self.email = email.downcase }
 validates :name,  presence: true, length: { maximum: 50 }
@@ -18,11 +24,27 @@ def User.encrypt(token)
 end
 
 def feed
-    # Это предварительное решение. См. полную реализацию в "Following users".
-    Micropost.where("user_id = ?", id)
- end
+    Micropost.from_users_followed_by(self)
+end
 
-  private
+def self.from_users_followed_by(user)
+    followed_user_ids = user.followed_user_ids
+    where("user_id IN (?) OR user_id = ?", followed_user_ids, user)
+end
+
+def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+end
+
+def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+end
+
+def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy!
+end
+
+private
 
 def create_remember_token
     self.remember_token = User.encrypt(User.new_remember_token)

@@ -1,0 +1,10 @@
+<h1> Your followers : </h1>
+<% if current_user.followers.any? %>
+  <% current_user.followers.each do |followers| %>
+<ol>
+   <li>
+	<%= link_to followers.name, user_path(followers) %> 
+   </li>
+</ol>
+  <%end%>
+<%end%> 
