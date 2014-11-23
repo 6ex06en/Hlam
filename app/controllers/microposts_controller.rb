@@ -13,6 +13,22 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def show
+    @micropost = Micropost.find(params[:id])
+    @user = @micropost.user
+    @reps = @user.all_reply
+  end
+
+  def reply
+    @micropost = current_user.microposts.build(reply_params)
+    if @micropost.save
+      redirect_to micropost_path(params[:micropost][:including_replies])
+    else
+      redirect_to root_url
+    end
+  end
+
+
   def destroy
     @micropost.destroy
     redirect_to root_url
@@ -24,8 +40,13 @@ class MicropostsController < ApplicationController
       params.require(:micropost).permit(:content)
     end
 
+    def reply_params
+      params.require(:micropost).permit(:content, :in_reply_to, :including_replies)
+    end
+
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])
       redirect_to root_url if @micropost.nil?
     end
+
 end

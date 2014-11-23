@@ -13,6 +13,7 @@ describe User do
   it { should respond_to(:unfollow!) }
   it { should respond_to(:reverse_relationships) }
   it { should respond_to(:followers) }
+  it { should respond_to(:all_reply) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -121,7 +122,29 @@ describe User do
       its(:followed_users) { should_not include(other_user) }
     end
   end
-end
 
+  describe "reply another user" do
+    before { @user.save! }
+    let(:other_user) { FactoryGirl.create(:user)}
+    let!(:micropost) { FactoryGirl.create(:micropost, user: @user)}
+    let!(:reply) { other_user.microposts.create!(content: "sd",
+        including_replies: micropost.id, in_reply_to: @user.id) }
+
+    its(:all_reply) {should include(reply)}
+    its(:all_reply) {should_not include(micropost)}
+
+    it "not be empty" do
+    feedbacks = @user.all_reply
+    expect(feedbacks).not_to be_empty
+    feedbacks.each do |rep|
+      expect(Micropost.where(id: reply.id)).not_to be_empty
+      end 
+    end
+
+    it "destroy, because main micropost delete" do
+    expect{ micropost.destroy }.to change(Micropost, :count).by(-2) 
+    end
+  end
+end
 
 

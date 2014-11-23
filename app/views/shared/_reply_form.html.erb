@@ -1,0 +1,7 @@
+<%= form_for(current_user.microposts.build(in_reply_to: @user.id, 
+				including_replies: @micropost.id), url: {action: 'reply'}) do |f| %> 
+<%= f.hidden_field :in_reply_to %>
+<%= f.hidden_field :including_replies %>
+<%= f.text_area :content, placeholder: "Compose new reply...", class: "form_reply_form"%>
+<%= f.submit "Reply", class: "bottom_reply"  %>
+<% end %>

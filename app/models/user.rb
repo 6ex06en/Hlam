@@ -27,10 +27,6 @@ def feed
     Micropost.from_users_followed_by(self)
 end
 
-def self.from_users_followed_by(user)
-    followed_user_ids = user.followed_user_ids
-    where("user_id IN (?) OR user_id = ?", followed_user_ids, user)
-end
 
 def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
@@ -42,6 +38,15 @@ end
 
 def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
+end
+
+
+def all_reply
+    Micropost.replies(self)
+end
+
+def only_mic
+  Micropost.microposts_without_reply(self)            
 end
 
 private

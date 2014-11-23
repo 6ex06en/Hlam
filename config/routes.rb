@@ -4,6 +4,12 @@ SecondApp::Application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources :microposts do
+    member do
+      post :reply
+    end
+  end
   #get "users/new"
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
@@ -12,7 +18,7 @@ SecondApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts, only: [:create, :destroy, :show]
   resources :relationships, only: [:create, :destroy]
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

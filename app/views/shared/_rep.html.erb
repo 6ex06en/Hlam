@@ -1,0 +1,6 @@
+<li class="comment">
+	<%= gravatar_for rep.user, size: 25 %>
+	<span class="com_u_name"><%=rep.user.name%></span><span class="gav">@
+	</span><%= rep.content %>
+	<span class="timestamp">Posted <%= time_ago_in_words(rep.created_at)%> ago</span>
+<li>

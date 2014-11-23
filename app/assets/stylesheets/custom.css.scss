@@ -243,3 +243,33 @@ aside {
     margin-bottom: 5px;
   }
 }
+.bottom_reply {
+  display: block;
+  background: #0889ff;
+  font: normal 12pt sans-serif;
+  border-radius: 6px;
+  padding: 5pt 10pt 5pt 10pt;
+  margin-top: -9pt;
+  color: white;
+}
+.form_reply_form {
+  max-width: 300pt;
+  height: 50pt;
+}
+.comments {
+  list-style: none;
+  margin-left: 0;
+  max-width: 520pt;
+  border-top: #666666 solid 1pt;
+  .com_u_name {
+    font: bold italic 110% Georgia ;
+  }
+  .gav {
+    color:#0889ff;
+  }
+}
+.comment {
+    padding: 10pt;
+    border-bottom: 1pt solid #8e9092;
+    font: normal 110% sans-serif ;
+  }
