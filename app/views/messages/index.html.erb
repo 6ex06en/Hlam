@@ -1,0 +1,24 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <%= gravatar_for @user %>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
+      <span><b>Messages:</b> <%= @unread.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="span8">
+    <h3>Messages</h3>
+    <% if @messages.any? %>
+      <ul class="list-mes-all">
+        <%= render @messages %>
+      </ul>
+      <%= will_paginate @messages %>
+    <% end %>
+  </div>
+</div>

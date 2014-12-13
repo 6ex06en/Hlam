@@ -1,5 +1,7 @@
 SecondApp::Application.routes.draw do
   resources :users do
+      resources :messages, only: [:create, :show, :destroy, :index]
+      get :private_message
     member do
       get :following, :followers
     end

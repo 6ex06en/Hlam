@@ -1,0 +1,14 @@
+<section>
+<div class="grav_user">
+<%= link_to gravatar_for(current_user, size: 56), current_user %>
+<h1 class="gravatar"><%= current_user.name %></h1>
+</div>
+</section>
+<section>
+<%= render 'shared/error_messages', object: @message %>
+<%= form_for ([current_user, current_user.messages.build(reciever_id: @user.id)]) do |message| %>
+<%= message.hidden_field :reciever_id %>
+<%= message.text_area :content, class: "text_field " %>
+<%= message.submit "Submit", class: "bottom_reply"  %>
+<% end %>
+</section>

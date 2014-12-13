@@ -6,4 +6,5 @@
     <%= render 'follow' %>
   <% end %>
   </div>
+  <%= button_to "Message", user_private_message_path(@user.id), method: "get" %>
 <% end %>

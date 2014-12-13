@@ -6,6 +6,10 @@ has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",
                                    dependent:   :destroy
 has_many :followers, through: :reverse_relationships, source: :follower
+has_many :messages, inverse_of: :user, dependent: :destroy
+has_many :recieve_messages, foreign_key: "reciever_id", class_name: "Message"
+has_many :recieve_messages_unread, -> { where :read => true }, foreign_key: "reciever_id", 
+            class_name: "Message", inverse_of: :user
 before_create :create_remember_token
 before_save { self.email = email.downcase }
 validates :name,  presence: true, length: { maximum: 50 }
@@ -38,6 +42,10 @@ end
 
 def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
+end
+
+def send_private(other_user, cont)
+    messages.create!(reciever_id: other_user.id, content: cont)
 end
 
 

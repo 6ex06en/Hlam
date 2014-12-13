@@ -1,0 +1,4 @@
+<li class="read-<%= message.read %>">
+	<%=link_to (message.user.name + ":" + short_content(message.content)), user_message_path(@user, message) %>
+</li>
+

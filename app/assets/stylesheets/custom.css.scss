@@ -272,4 +272,36 @@ aside {
     padding: 10pt;
     border-bottom: 1pt solid #8e9092;
     font: normal 110% sans-serif ;
+}
+  .text_field {
+    height: 100px;
+    margin-bottom: 15px;
+
+}
+
+.list-mes-all {
+  margin: 10pt 0 0 -10pt;
+}
+
+.read-false, .read-true {
+    a {
+      color: black; 
+      }
+    list-style: none; 
+    padding: 5pt;
+    border-bottom: solid 1pt;
+    &:hover {
+    font-size: 110%;
   }
+}
+
+.read-false {
+      background: #b4dcf4;
+      font: bold 1em sans-serif;
+    }
+
+.read-true {
+      background: #e7fdfa;
+      border-bottom: solid 1pt;
+    }
+
