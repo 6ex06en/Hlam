@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+40.times do |message|
+Message.create(content: "qwe+#{message}", reciever_id: 1, user_id: 101) 
+end

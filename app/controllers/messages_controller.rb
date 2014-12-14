@@ -14,12 +14,15 @@ end
 
 def index
     @user = User.find(params[:user_id])
-    @messages = @user.recieve_messages.paginate(page: params[:page])
+    @messages = @user.recieve_messages.paginate(page: params[:page], per_page: 10)
     @unread = @user.recieve_messages_unread
 end
 
 
 def destroy
+	@user = User.find(params[:user_id])
+	current_user.recieve_messages.find(params[:id]).destroy
+	redirect_to user_messages_path(current_user)
 end
 
 def show

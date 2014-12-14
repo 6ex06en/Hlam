@@ -1,4 +1,2 @@
-<li class="read-<%= message.read %>">
-	<%=link_to (message.user.name + ":" + short_content(message.content)), user_message_path(@user, message) %>
-</li>
+<li class="read-<%= message.read %>"> <%= link_to (message.user.name + ":" + short_content(message.content)), user_message_path(@user, message) %><%=link_to "delete", [@user, message], method: :delete, data: {confirm: "Вы уверены?"}, class: "link-delete" %> </li>
 
