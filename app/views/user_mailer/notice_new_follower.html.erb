@@ -1,0 +1,10 @@
+<!Doctype html>
+<html>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+<body>
+<h3> Hello, <%=@reciever.name %>! </h3>
+<p> You have a new fan: <%= @sender.name %></p>
+<p> May be you want to look at it? </p>
+<p> <%= user_url(@sender) %></p>
+</body>
+</html>

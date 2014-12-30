@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203205656) do
+ActiveRecord::Schema.define(version: 20141214113117) do
 
   create_table "messages", force: true do |t|
     t.string   "content"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20141203205656) do
   end
 
   add_index "microposts", ["in_reply_to"], name: "index_microposts_on_in_reply_to"
+
+  create_table "options", force: true do |t|
+    t.boolean  "email_notice"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "options", ["user_id"], name: "index_options_on_user_id"
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"

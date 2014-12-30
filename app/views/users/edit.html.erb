@@ -1,5 +1,18 @@
 <% provide(:title, "Edit user") %>
 <h1>Update your profile</h1>
+<%= form_tag user_options_path(@user), method: "patch" do %>
+  <div class="set">
+  	<ul>
+  		<li class="set-f">Настройки:</li>
+  		<div class="set-drop">
+        <% notice = current_user.option.email_notice %>
+  			<li><%=check_box_tag(:email_notice, "1", notice) %><%= label_tag(:email_notice, "Включить почтовые уведомления о новых читателях") %></li>
+  			<li><%=check_box_tag(:adv) %><%= label_tag(:adv, "Дополнительные настройки(в разработке)") %></li>
+  			<li><%= submit_tag "Обновить", class: "bottom_reply" %></li>
+  		</div>
+  	</ul>
+  </div>
+  <% end %>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>

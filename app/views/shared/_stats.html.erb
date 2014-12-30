@@ -15,7 +15,7 @@
   <% if current_user?(@user) %>
   <a href="<%= user_messages_path(@user) %>">
     <strong id="followers" class="stat">
-      <%= @user.recieve_messages.count %>
+      <%= @user.recieve_messages_unread.count %>
     </strong>
     messages
   </a>

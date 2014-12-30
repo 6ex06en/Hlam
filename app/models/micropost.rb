@@ -22,7 +22,3 @@ def self.microposts_without_reply(user)
 end
 
 end
-
-# where(in_reply_to: micro.id )
-#user = u.id
-#where("SELECT in_reply_to FROM microposts WHERE in_reply_to = #{user}")

@@ -47,7 +47,4 @@ describe "depends on the user" do
 	it { expect(Message.where(user_id: user.id)).to be_empty }
 end
 
-
-it "after reading changes the status on readable"
-
 end

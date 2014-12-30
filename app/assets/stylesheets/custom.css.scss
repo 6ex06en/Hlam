@@ -308,4 +308,49 @@ aside {
       background: #e7fdfa;
       border-bottom: solid 1pt;
     }
-
+.set {
+  position: absolute;
+  top: 100pt;
+  left: 0;
+  margin: 20pt;
+  display: inline-block;
+  ul {
+    list-style: none;
+  }
+  ul input {
+  margin-right: 2pt;   
+  float: left;
+  }
+  ul li {
+    margin: 5pt 0;
+  }
+  ul > li:nth-child(1) {
+    position: relative;
+    display: block;
+    color: black;
+    font: bold 1.2em Georgia;
+  }
+}  
+.set-f:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8pt;
+    left: 28pt;
+    border: 5pt solid transparent;
+    border-top: 5pt solid black;
+}  
+.set-drop {
+  position: relative; 
+  top: -5000pt;
+  height: 80pt;
+  opacity: 0;
+  transition: opacity 0.5s;
+  li:last-child {
+    margin-top: 15pt;
+  }
+}
+.set li:hover + .set-drop, .set-drop:hover {
+  top: -4pt;
+  opacity: 1;
+}
