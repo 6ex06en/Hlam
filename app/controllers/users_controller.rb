@@ -49,6 +49,7 @@ class UsersController < ApplicationController
     redirect_to root_url if current_user
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
+    @user.create_option
     sign_in @user
     flash[:success] = "Welcome to the Sample App!"
     redirect_to @user

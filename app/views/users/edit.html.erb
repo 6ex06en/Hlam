@@ -5,7 +5,7 @@
   	<ul>
   		<li class="set-f">Настройки:</li>
   		<div class="set-drop">
-        <% notice = current_user.option.email_notice %>
+        <% notice = false || current_user.option.email_notice.class if current_user.option != nil %>
   			<li><%=check_box_tag(:email_notice, "1", notice) %><%= label_tag(:email_notice, "Включить почтовые уведомления о новых читателях") %></li>
   			<li><%=check_box_tag(:adv) %><%= label_tag(:adv, "Дополнительные настройки(в разработке)") %></li>
   			<li><%= submit_tag "Обновить", class: "bottom_reply" %></li>
