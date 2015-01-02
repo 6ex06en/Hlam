@@ -16,7 +16,7 @@ end
 describe "should dependent at model user and to have validation" do
 	subject { option }
 	before { option.email_notice = "" }
-	it "checking dependencies" do
+	it "check on valid" do
 		should_not be_valid
 	end
 

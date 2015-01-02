@@ -12,7 +12,7 @@
 
       <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
     <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <p>Забыли пароль? <%= link_to "напомнить", forgot_path %> </p>
+    <p>Новый пользователь? <%= link_to "Sign up now!", signup_path %></p>
   </div>
 </div>

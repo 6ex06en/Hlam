@@ -25,6 +25,8 @@ SecondApp::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/forgot', to: 'sessions#forgot',        via: 'get'
+  match '/remind', to: 'sessions#remind',        via: 'post' 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
