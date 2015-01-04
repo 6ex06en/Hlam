@@ -22,6 +22,37 @@ class SessionsController < ApplicationController
   end
 
   def remind
+    keyword = params[:sclerosis]
+    regexp = /\A[a-z]+[\w.\-+]+@[a-z]+\.[a-z]{1,2}\Z/i
+    if regexp =~ keyword
+      user = User.find_by(email: keyword)
+      if user != nil && temp_link(user)
+      flash.now[:success] = "На ваш e-mail отправлено письмо по восстановлению пароля"  
+      return render 'forgot'
+      end
+      flash.now[:error] = "Такой пользователь не найден"
+      render 'forgot'
+    else
+      flash.now[:error] = "Неправильный e-mail"
+      render 'forgot'
+    end
   end
-  
+
+  def edit
+    if User.find_by(remember_token: User.encrypt(params[:id])) != nil
+    @user = User.find_by(remember_token: User.encrypt(params[:id]))
+    else 
+    redirect_to forgot_path
+    flash[:error] = "Ссылка устарела, попробуйте восстановить пароль снова"
+    end                          
+  end
+
+  private
+
+  def temp_link(user)
+    remember_token = User.new_remember_token
+    user.update_attribute(:remember_token, User.encrypt(remember_token))
+    UserMailer.reset_password(user, remember_token).deliver
+  end
+
 end

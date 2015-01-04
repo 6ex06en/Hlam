@@ -115,4 +115,35 @@ describe "User pages" do
       it { should have_link(user.name, href: user_path(user)) }
     end
   end
+
+  describe "reset password" do
+    before { visit signin_path }
+    it "link remind" do
+      should have_link("напомнить")
+      click_link 'напомнить'
+      should have_content("Забыли пароль?")
+    end
+  end
+
+  describe "edit_session_path" do
+    before do
+      @user = User.new(name: "Kerz1", email: "kerzo1@mail.ru", password: "qweqwe", password_confirmation: "qweqwe")
+      @user.save
+      visit forgot_path
+      fill_in "sclerosis", with: @user.email
+      click_button "Сбросить пароль"
+    end
+    it "send mail" do
+      expect(page).to have_title('Ruby')
+      expect(page).to have_selector('div.alert.alert-success')
+      expect(page).to have_content("На ваш e-mail")  
+    end
+
+    it "check temp link" do
+      token = User.new_remember_token
+      @user.update_attribute(:remember_token, User.encrypt(token))
+      visit edit_session_path(token)
+      expect(page).to have_content("Укажите новый пароль.")
+    end
+  end
 end

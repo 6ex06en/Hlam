@@ -20,13 +20,13 @@ SecondApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy, :edit]
   resources :microposts, only: [:create, :destroy, :show]
   resources :relationships, only: [:create, :destroy]
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/forgot', to: 'sessions#forgot',        via: 'get'
-  match '/remind', to: 'sessions#remind',        via: 'post' 
+  match '/remind', to: 'sessions#remind',        via: 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

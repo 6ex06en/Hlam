@@ -1,0 +1,12 @@
+<% if @user.updated_at > 5.day.ago %>
+<h3> Укажите новый пароль. </h3>
+<%= form_for(@user) do |u| %>
+<%= u.label :password %>
+<%= u.password_field :password %>
+<%= u.label :password_confirmation %>
+<%= u.password_field :password_confirmation %>
+<%= u.submit "Update" %>
+<% end %>
+<% else %>
+<h3> Ссылка устарела, попробуйте восстановить пароль позже.</h3>
+<% end %>

@@ -6,4 +6,10 @@ class UserMailer < ActionMailer::Base
   	@reciever = followed
   	mail(to: @reciever.email, subject: "New follower!")
   end
+
+  def reset_password(reciever, token)
+  	@token = token
+  	@reciever = reciever
+  	mail(to: reciever.email, subject: "Password recovery")
+  end
 end
