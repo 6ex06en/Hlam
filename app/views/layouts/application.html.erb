@@ -6,6 +6,9 @@
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+    <% if signed_in? %>
+    <%= auto_discovery_link_tag(:atom, feed_user_url(current_user, format: "atom")) %>
+    <% end %>
     <%= render 'layouts/shim' %>
   </head>
   <body>

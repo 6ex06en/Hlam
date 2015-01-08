@@ -1,6 +1,6 @@
 module MessagesHelper
-	def short_content(content)
-		return content if content.length < 65
-		short = content[0, 65]+"..."
+	def short_content(opt = 65, content)
+		return content if content.length < opt
+		short = content[0, opt]+"..."
 	end
 end

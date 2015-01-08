@@ -1,0 +1,7 @@
+<h1> All Followers </h1>
+<div>
+<% for follower in @followers %>
+<h3>New follower - <%= follower.name %> </h3>
+<p>You have <% @followers.count %> followers, last - <%= follower.name %></p>
+<% end %>
+</div>  

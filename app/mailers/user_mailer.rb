@@ -12,4 +12,10 @@ class UserMailer < ActionMailer::Base
   	@reciever = reciever
   	mail(to: reciever.email, subject: "Password recovery")
   end
+
+  def send_confirm(reciever, token)
+    @reciever = reciever
+    @token = token
+    mail(to: reciever.email, subject: "Registration confirmation")
+  end
 end

@@ -1,10 +1,15 @@
 class SessionsController < ApplicationController
+
 	def new
 	end
 
 	def create
-       user = User.find_by(email: params[:session][:email].downcase)
+      user = User.find_by(email: params[:session][:email].downcase)
   		if user && user.authenticate(params[:session][:password])
+        unless user.active
+        flash.now[:error] = "Пользователь не активирован"
+        return render 'new'
+        end 
   		sign_in user
     	redirect_back_or user
   		else
