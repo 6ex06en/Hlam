@@ -22,12 +22,6 @@ class UsersController < ApplicationController
     @message = current_user.messages.build
   end
 
-  def all_messages
-    @user = User.find(params[:user_id])
-    @messages = @user.recieve_messages.paginate(page: params[:page])
-    @unread = @user.recieve_messages_unread
-  end
-
   def index
   @users = User.paginate(page: params[:page])
   
@@ -36,6 +30,11 @@ class UsersController < ApplicationController
   def show
   @user = User.find(params[:id])
   @microposts = @user.only_mic.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @user }
+      format.json { render :json => @user}
+    end
   end
 
   def edit

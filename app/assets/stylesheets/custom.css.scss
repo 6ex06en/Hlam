@@ -289,7 +289,7 @@ aside {
     border-bottom: solid 1pt;
     &:hover {
       .link-delete {
-        margin-left: 80%;
+        float:right;
         color: #153438;
       }
   }
