@@ -30,11 +30,6 @@ class UsersController < ApplicationController
   def show
   @user = User.find(params[:id])
   @microposts = @user.only_mic.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @user }
-      format.json { render :json => @user}
-    end
   end
 
   def edit

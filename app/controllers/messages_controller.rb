@@ -16,10 +16,6 @@ def index
     @user = User.find(params[:user_id])
     @messages = @user.recieve_messages.paginate(page: params[:page], per_page: 10)
     @unread = @user.recieve_messages_unread
-    respond_to do |format|
-    	format.html
-    	format.xml { render xml: @messages}
-    end
 end
 
 
