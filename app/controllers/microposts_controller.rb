@@ -28,10 +28,13 @@ class MicropostsController < ApplicationController
     end
   end
 
-
   def destroy
     @micropost.destroy
     redirect_to root_url
+  end
+
+  def search
+  @result = Micropost.search(params[:search]).paginate(page: params[:page])
   end
 
   private

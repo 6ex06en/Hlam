@@ -21,4 +21,8 @@ def self.microposts_without_reply(user)
     where("in_reply_to IS NULL AND user_id = :user_id", user_id: user.id)  
 end
 
+def self.search(content)
+	where("content like ?", "%#{content}%")
+end
+
 end

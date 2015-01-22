@@ -354,3 +354,19 @@ aside {
   top: -4pt;
   opacity: 1;
 }
+
+.search {
+  width : 10%;
+  float: right;
+  position: relative;
+  top: -14pt;
+  #search {
+    margin-bottom: 0pt;
+  }
+  input[type= submit] {
+    background: black;
+    color: $grayLight;
+    margin-top: 0pt;
+    float: right;
+  }
+}
