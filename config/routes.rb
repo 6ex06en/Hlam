@@ -29,6 +29,7 @@ SecondApp::Application.routes.draw do
   match '/forgot', to: 'sessions#forgot',        via: 'get'
   match '/remind', to: 'sessions#remind',        via: 'post'
   match '/search', to: 'microposts#search',       via: 'get'
+  match '/auth/vkontakte/callback' => 'sessions#vk', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

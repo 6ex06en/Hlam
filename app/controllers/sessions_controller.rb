@@ -3,6 +3,22 @@ class SessionsController < ApplicationController
 	def new
 	end
 
+  def vk
+   if hash = request.env["omniauth.auth"]
+    if user = User.find_by(email: hash[:info][:email])
+      flash[:success] = "Welcome, #{hash[:info][:name] || hash[:info][:nickname]}"
+       sign_in user
+       redirect_back_or user
+    else
+      pass = SecureRandom.urlsafe_base64
+      user = User.create!(name: hash[:info][:nickname] || hash[:info][:name], 
+        email: hash[:info][:email], password: pass, password_confirmation: pass)
+      sign_in user
+      redirect_back_or user
+    end
+   end
+  end
+
 	def create
       user = User.find_by(email: params[:session][:email].downcase)
   		if user && user.authenticate(params[:session][:password])

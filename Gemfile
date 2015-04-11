@@ -8,6 +8,12 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem 'mysql2',          '0.3.12b5', :platform => :ruby
+gem 'thinking-sphinx', '~> 3.1.0'
+gem 'omniauth'
+# gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
